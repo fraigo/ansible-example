@@ -1,3 +1,0 @@
-localhost	admin	22	local
-192.168.1.82	francisco	22	remote
-
