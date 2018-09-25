@@ -5,6 +5,7 @@ if [ "$1" == "" ];then
 	echo "Usage: $0 [filter]"
 	exit 1
 fi
+
 COMMAND=$1
 FILTER=$2
 

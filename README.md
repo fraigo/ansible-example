@@ -1,2 +1,7 @@
 # ansible-example
-Ansible example scripts and multi-server emulation
+Ansible example scripts and multi-server command execution
+
+
+
+
+

@@ -9,6 +9,11 @@ if [ "$FORMAT" == "" ]; then
 fi
 IFS='
 '
+
+if [ -e $CURDIR/servers.txt ]: then
+	cp $CURDIR/servers.default.txt $CURDIR/servers.txt
+fi
+
 SERVERS=$(cat $CURDIR/servers.txt)
 
 for server in $SERVERS

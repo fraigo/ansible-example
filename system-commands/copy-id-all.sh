@@ -6,6 +6,6 @@ FILTER=$1
 SERVERS=$($CURDIR/servers.sh USER@HOST $FILTER)
 for server in $SERVERS
 do
-	echo "Running in [$server]"
+	echo "Copy id to [$server]"
 	$CURDIR/copy-id.sh $server
 done
