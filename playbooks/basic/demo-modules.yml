@@ -1,0 +1,42 @@
+---
+- hosts: servers
+  order: inventory
+  vars:
+    apache_template: httpd.j2
+  remote_user: root
+  tasks:
+  - name: install the latest version of package using yum
+    yum:
+      name: httpd
+      state: latest
+  - name: create a file based on a template file, and using variable substitution
+    template:
+      src: /srv/{{ apache_template }}
+      dest: /etc/httpd.conf
+    notify:
+    - restart apache
+  - name: manage service execution
+    service:
+      name: httpd
+      state: started
+  - name: ping host
+    ping:
+    remote_user: apache
+    become: yes
+    become_method: sudo
+    become_user: root
+  - debug:
+    var: inventory_hostname
+  - name: exec command 
+    command: uname -a
+  - name: exec command and ignore the result
+    shell: /usr/bin/somecommand
+    ignore_errors: True
+  - name: copy ansible inventory file to client
+    copy: src=/etc/ansible/hosts dest=/tmp/hosts
+            owner=root group=root mode=0644
+  handlers:
+    - name: restart apache
+      service:
+        name: httpd
+        state: restarted
