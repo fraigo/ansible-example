@@ -7,17 +7,20 @@
     image: ami-0b59bfac6be064b78
     region: us-east-2
   tasks:
-  - name: Launch instance
+  - name: Create and Launch instance
     ec2:
       key_name: '{{ keypair }}'
       group: default
       instance_type: '{{ instancetype }}'
       image: '{{ image }}'
       wait: true
+      count: 1
+      state: present
       region: '{{ region }}'
-      aws_access_key: AWSPUBLICKEY
-      aws_secret_key: AWSSECRETKEY
+      aws_access_key: AKIAINU72ZBT5QMRL5UA
+      aws_secret_key: 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
     register: ec2
-  - name: PRint all ec2 variables
+
+  - name: Print all ec2 variables
     debug: var=ec2
 
